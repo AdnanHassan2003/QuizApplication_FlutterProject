@@ -34,12 +34,53 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-
-
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   void loginUser(BuildContext context) async {
     if (!_formKey.currentState!.validate()) {
       return; // Stop if validation fails
+    }
+
+    final body = jsonEncode({
+      'email': emailController.text,
+      'password': passwordController.text,
+    });
+
+    try {
+      final response = await http.post(
+        Uri.parse('http://192.168.18.3:7020/user_login'),
+        headers: {'Content-Type': 'application/json'},
+        body: body,
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        if (responseData['success']) {
+          var name = responseData['record']['name'];
+          print("The name of the user: $name");
+          _clearAllFields();
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SplashScreen(
+                  Username: name
+              ),
+            ),
+          );
+
+        } else {
+          showErrorDialog(context, responseData['message']);
+        }
+      } else {
+        showErrorDialog(context, 'Failed to log in. Please try again.');
+      }
+    } catch (e) {
+      showErrorDialog(context, 'An error occurred: $e');
     }
   }
 
