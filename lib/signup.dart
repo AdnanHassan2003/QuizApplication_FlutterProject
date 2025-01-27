@@ -19,13 +19,71 @@ class _SignupState extends State<Signup> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-
+  @override
+  void dispose() {
+    nameController.dispose();
+    phoneController.dispose();
+    emailController.dispose();
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   void registerUser(BuildContext context) async {
     if (!_formKey.currentState!.validate()) {
       return; // Stop if validation fails
     }
 
+    final body = jsonEncode({
+      'name': nameController.text,
+      'phone': phoneController.text,
+      'email': emailController.text,
+      'user_name': usernameController.text,
+      'password': passwordController.text,
+    });
+
+    try {
+      final response = await http.post(
+        Uri.parse('http://192.168.18.3:7020/user_registration'),
+        headers: {'Content-Type': 'application/json'},
+        body: body,
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        if (responseData['success']) {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text('Success'),
+              content: Text(responseData['message']),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    _clearAllFields();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ),
+                    );
+                    // Clear all text fields after success
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+          );
+        } else {
+          showErrorDialog(context, responseData['message']);
+        }
+      } else {
+        showErrorDialog(context, 'Failed to register user. Please try again.');
+      }
+    } catch (e) {
+      showErrorDialog(context, 'An error occurred: $e');
+    }
   }
 
   void showErrorDialog(BuildContext context, String message) {
@@ -135,7 +193,12 @@ class _SignupState extends State<Signup> {
                       const Text('Already have an account? '),
                       TextButton(
                         onPressed: () {
-
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LoginPage(), // Replace with actual LoginPage
+                            ),
+                          );
                         },
                         child: const Text(
                           'Login',
