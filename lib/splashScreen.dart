@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:quizapp/dashbordScreen.dart';
 
@@ -63,14 +62,14 @@ class SplashScreen extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DashbordScreen(
-                            Usernamefromsplash: name
-                        ),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DashbordScreen(
+                          Usernamefromsplash: name
                       ),
-                    );
+                    ),
+                  );
                 },
                 child: const Text(
                   'More Than 50 Questions Here',
@@ -84,4 +83,3 @@ class SplashScreen extends StatelessWidget {
     );
   }
 }
-

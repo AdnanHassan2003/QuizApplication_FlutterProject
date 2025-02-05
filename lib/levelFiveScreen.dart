@@ -10,6 +10,7 @@ class levelFiveScreen extends StatefulWidget {
   const levelFiveScreen({
     Key? key,
     required this.UsernamelevelFive,
+
   }) : super(key: key);
 
   @override
@@ -53,12 +54,12 @@ class _LevelFiveScreenState extends State<levelFiveScreen> {
           setState(() {
             _quizData = (jsonData['record'] as List<dynamic>)
                 .map((record) => {
-                      "question": record["quetion"] ?? "",
-                      "answer1": record["answer1"] ?? "Option 1",
-                      "answer2": record["answer2"] ?? "Option 2",
-                      "answer3": record["answer3"] ?? "Option 3",
-                      "correct": record["correct"] ?? -1,
-                    })
+              "question": record["quetion"] ?? "",
+              "answer1": record["answer1"] ?? "Option 1",
+              "answer2": record["answer2"] ?? "Option 2",
+              "answer3": record["answer3"] ?? "Option 3",
+              "correct": record["correct"] ?? -1,
+            })
                 .toList();
           });
         } else {
@@ -126,7 +127,7 @@ class _LevelFiveScreenState extends State<levelFiveScreen> {
             correctAnswers: _score,
             wrongAnswers: _quizData.length - _score,
             levalname: "Leval Five",
-            resultusername: name,
+            resultusername:name,
           ),
         ),
       );
@@ -216,7 +217,7 @@ class _LevelFiveScreenState extends State<levelFiveScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF14213D),
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 70, vertical: 15),
+                const EdgeInsets.symmetric(horizontal: 70, vertical: 15),
               ),
               onPressed: _nextQuestion,
               child: const Text(

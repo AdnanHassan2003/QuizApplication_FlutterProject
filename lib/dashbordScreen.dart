@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quizapp/levelFiveScreen.dart';
@@ -124,7 +123,6 @@ class DashbordScreen extends StatelessWidget {
                 ],
               ),
             ),
-            
             const SizedBox(height: 16),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -239,10 +237,9 @@ class DashbordScreen extends StatelessWidget {
                 ],
               ),
             ),
-  ],
+          ],
         ),
       ),
     );
   }
 }
-

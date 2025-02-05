@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:quizapp/result.dart';
@@ -258,4 +257,3 @@ class _LevelTwoScreenState extends State<levelTwoScreen> {
     );
   }
 }
-

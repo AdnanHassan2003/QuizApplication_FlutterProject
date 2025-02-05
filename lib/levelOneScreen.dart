@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -33,7 +32,7 @@ class _LevelOneScreenState extends State<LevelOneScreen> {
   void _fetchQuizData() async {
     final body = jsonEncode({});
 
-     name = widget.UsernamelevelOne;
+    name = widget.UsernamelevelOne;
     print("Name being sent level one result: $name");
 
     try {
@@ -254,4 +253,3 @@ class _LevelOneScreenState extends State<LevelOneScreen> {
     );
   }
 }
-

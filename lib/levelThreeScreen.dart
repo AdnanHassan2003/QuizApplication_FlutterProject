@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:quizapp/result.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 class levelThreeScreen extends StatefulWidget {
   final String UsernamelevelThree;
 
   const levelThreeScreen({
     Key? key,
     required this.UsernamelevelThree,
+
   }) : super(key: key);
 
   @override
@@ -36,6 +36,7 @@ class _LevelThreeScreenState extends State<levelThreeScreen> {
 
     name = widget.UsernamelevelThree;
 
+
     print('Name being sent level three result: ${name}');
 
     try {
@@ -53,12 +54,12 @@ class _LevelThreeScreenState extends State<levelThreeScreen> {
           setState(() {
             _quizData = (jsonData['record'] as List<dynamic>)
                 .map((record) => {
-                      "question": record["quetion"] ?? "",
-                      "answer1": record["answer1"] ?? "Option 1",
-                      "answer2": record["answer2"] ?? "Option 2",
-                      "answer3": record["answer3"] ?? "Option 3",
-                      "correct": record["correct"] ?? -1,
-                    })
+              "question": record["quetion"] ?? "",
+              "answer1": record["answer1"] ?? "Option 1",
+              "answer2": record["answer2"] ?? "Option 2",
+              "answer3": record["answer3"] ?? "Option 3",
+              "correct": record["correct"] ?? -1,
+            })
                 .toList();
           });
         } else {
@@ -126,7 +127,7 @@ class _LevelThreeScreenState extends State<levelThreeScreen> {
             correctAnswers: _score,
             wrongAnswers: _quizData.length - _score,
             levalname: "Leval Three",
-            resultusername: name,
+            resultusername:name,
           ),
         ),
       );
@@ -216,7 +217,7 @@ class _LevelThreeScreenState extends State<levelThreeScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF14213D),
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 70, vertical: 15),
+                const EdgeInsets.symmetric(horizontal: 70, vertical: 15),
               ),
               onPressed: _nextQuestion,
               child: const Text(

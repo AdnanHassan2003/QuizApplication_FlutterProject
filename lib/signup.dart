@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:quiz_application/main.dart';
+import 'package:quizapp/main.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});

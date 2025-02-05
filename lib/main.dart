@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_application/signup.dart';
-import 'package:quiz_application/splashScreen.dart';
+import 'package:quizapp/signup.dart';
+import 'package:quizapp/splashScreen.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
